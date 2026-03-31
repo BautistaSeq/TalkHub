@@ -1,2 +1,4 @@
-# TalkHub
-WEB
+node_modules/
+.env
+public/uploads/*
+!public/uploads/.gitkeep
