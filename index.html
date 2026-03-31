@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- LOGO / ICONO -->
+<link rel="icon" href="icon.png">
+
+<!-- PREVIEW CUANDO COMPARTIS -->
+<meta property="og:title" content="TalkHub">
+<meta property="og:description" content="Chat privado con amigos">
+<meta property="og:image" content="https://tu-web.onrender.com/icon.png">
+
+<title>TalkHub</title>
+
+<style>
+
+/* fondo */
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Verdana;
+  background:#eef2ff;
+}
+
+/* contenedor */
+.loginBox{
+  background:white;
+  padding:40px;
+  border-radius:12px;
+  width:300px;
+  text-align:center;
+
+  /* neon suave */
+  box-shadow:
+    0 0 10px rgba(0,255,255,0.2),
+    0 0 20px rgba(150,0,255,0.15);
+}
+
+/* titulo */
+.loginBox h2{
+  margin-bottom:20px;
+}
+
+/* inputs */
+.loginBox input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+  outline:none;
+
+  /* neon suave */
+  box-shadow:0 0 5px rgba(0,255,255,0.15);
+}
+
+/* focus */
+.loginBox input:focus{
+  box-shadow:
+    0 0 8px rgba(0,255,255,0.4),
+    0 0 12px rgba(150,0,255,0.3);
+}
+
+/* boton */
+.loginBox button{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  background:#d6daf0;
+
+  box-shadow:0 0 8px rgba(0,255,255,0.2);
+}
+
+.loginBox button:hover{
+  background:#c7d0ff;
+}
+
+/* celular */
+@media(max-width:500px){
+  .loginBox{
+    width:85%;
+    padding:25px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="loginBox">
+
+<h2>TalkHub Login</h2>
+
+<input id="gmail" placeholder="Gmail">
+<input id="dni" placeholder="DNI">
+
+<button onclick="login()">Entrar</button>
+
+</div>
+
+<script>
+function login(){
+  fetch("/login",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      gmail:gmail.value,
+      dni:dni.value
+    })
+  })
+  .then(r=>r.json())
+  .then(d=>{
+    if(d.success){
+      localStorage.setItem("user",d.nombre);
+      location.href="chat.html";
+    }else{
+      alert("Datos incorrectos");
+    }
+  });
+}
+</script>
+
+</body>
+</html>

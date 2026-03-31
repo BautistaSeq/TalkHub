@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- LOGO / ICONO -->
+<link rel="icon" href="icon.png">
+
+<!-- PREVIEW -->
+<meta property="og:title" content="TalkHub">
+<meta property="og:description" content="Chat privado con amigos">
+<meta property="og:image" content="https://tu-web.onrender.com/icon.png">
+
+<title>TalkHub</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<audio id="notifSound" src="notif.mp3"></audio>
+
+<div class="app">
+
+<div class="sidebar">
+<h3>Chats</h3>
+
+<button class="chatBtn active" onclick="setChat('general', this)">🌍 General</button>
+<button class="chatBtn" onclick="setChat('Danilo', this)">👤 Danilo</button>
+<button class="chatBtn" onclick="setChat('Bruno', this)">👤 Bruno</button>
+<button class="chatBtn" onclick="setChat('Alan', this)">👤 Alan</button>
+
+<button class="deleteChat" onclick="deleteChat()">🗑 Eliminar chat</button>
+</div>
+
+<div class="chat">
+
+<div id="messages"></div>
+
+<div class="inputBox">
+<input id="msg" placeholder="Mensaje...">
+<button onclick="send()">Enviar</button>
+</div>
+
+<div class="files">
+<input type="file" id="file">
+<button onclick="sendFile()">📎</button>
+<button onclick="startRec()">🎤</button>
+<button onclick="stopRec()">⏹</button>
+</div>
+
+</div>
+
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
